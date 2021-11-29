@@ -44,7 +44,7 @@ class GoogleDriveHelper:
         # Redirect URI for installed apps, can be left as is
         self.__REDIRECT_URI = "urn:ietf:wg:oauth:2.0:oob"
         self.__G_DRIVE_DIR_MIME_TYPE = "application/vnd.google-apps.folder"
-        self.__G_DRIVE_BASE_DOWNLOAD_URL = "https://drive.google.com/uc?id={}&export=download"
+        self.__G_DRIVE_BASE_DOWNLOAD_URL = "https://drive.google.com/file/d/{}/view"
         self.__G_DRIVE_DIR_BASE_DOWNLOAD_URL = "https://drive.google.com/drive/folders/{}"
         self.__listener = listener
         self.__service = self.authorize()
@@ -717,7 +717,7 @@ class GoogleDriveHelper:
                         f"</a> (shortcut)"
                     # Excluded index link as indexes cant download or open these shortcuts
                 else:
-                    furl = f"https://drive.google.com/uc?id={file.get('id')}&export=download"
+                    furl = f"https://drive.google.com/file/d/{file.get('id')}/view"
                     msg += f"📄 <code>{file.get('name')}<br>({get_readable_file_size(int(file.get('size')))})</code><br>"
                     furl = short_url(furl)
                     msg += f"<b><a href={furl}>Drive Link</a></b>"
